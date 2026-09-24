@@ -4,16 +4,13 @@
 __contains__、__getitem__ 等特殊方法。
 
 要求：
-1. 实现 Model，初始化参数为 name、provider、context_window；repr(model) 应提供
-   清晰的调试信息。
+1. 实现 Model，初始化参数为 name、provider、context_window；repr(model) 应提供清晰的调试信息。
 2. 实现 ModelCatalog，并定义类属性 category = "model-catalog"。
-3. ModelCatalog 接收 list[Model]；复制传入列表，且模型名称不得重复，重复时抛出
-   ValueError。
+3. ModelCatalog 接收 list[Model]；复制传入列表，且模型名称不得重复，重复时抛出 ValueError。
 4. 支持 len(catalog)、for model in catalog、"model-name" in catalog；后者按模型名判断。
 5. catalog[index] 返回 Model；catalog[start:stop] 返回新的 ModelCatalog。
 6. 实现 filter_by_provider(provider)，返回仅包含该供应商模型的新 ModelCatalog。
-7. 用 assert 验证长度、包含、索引、切片、筛选、外部列表修改不影响目录，以及重复名称
-   会抛出 ValueError。
+7. 用 assert 验证长度、包含、索引、切片、筛选、外部列表修改不影响目录，以及重复名称会抛出 ValueError。
 """
 
 from __future__ import annotations
@@ -101,6 +98,8 @@ def main() -> None:
         print("捕获到 ValueError:", e)
     else:
         raise AssertionError("同名模型应当抛出 ValueError。")
+
+    print(catalog[0])
 
 if __name__ == "__main__":
     main()
